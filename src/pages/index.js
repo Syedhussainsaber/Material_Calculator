@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 export default function Home() {
 
-const [oneRoomEstimation, setOneRoomEstimation] = useState(false)
+const [oneRoomEstimation, setOneRoomEstimation] = useState(true)
 const [twoRoomEstimation, setTwoRoomEstimation] = useState(false)
 const [upcoming, setUpcoming] = useState(false)
 
@@ -23,18 +23,18 @@ const [upcoming, setUpcoming] = useState(false)
         <section className='homePage'>
       <h1 className='title'>Construction Material Calculator</h1>
 <p>Select the Structure element you want to build</p>
-      <Radio.Group buttonStyle="solid">
-      <Radio.Button value="a" onChange={(e)=>{
+      <Radio.Group buttonStyle="solid" value={oneRoomEstimation?'a':twoRoomEstimation?"b":"c"} >
+      <Radio.Button  value={'a'} onChange={(e)=>{
         setOneRoomEstimation(true)
 setTwoRoomEstimation(false)
 setUpcoming(false)
       }}>One Room</Radio.Button>
-      <Radio.Button value="b" onChange={(e)=>{
+      <Radio.Button value={'b'} onChange={(e)=>{
         setOneRoomEstimation(false)
 setTwoRoomEstimation(true)
 setUpcoming(false)
       }}>Two Rooms</Radio.Button>
-      <Radio.Button value="c" onChange={(e)=>{
+      <Radio.Button value={'c'} onChange={(e)=>{
         setOneRoomEstimation(false)
 setTwoRoomEstimation(false)
 setUpcoming(true)
