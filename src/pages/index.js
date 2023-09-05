@@ -23,7 +23,7 @@ const [upcoming, setUpcoming] = useState(false)
         <section className='homePage'>
       <h1 className='title'>Construction Material Calculator</h1>
 <p>Select the Structure element you want to build</p>
-      <Radio.Group buttonStyle="solid" value={oneRoomEstimation?'a':twoRoomEstimation?"b":"c"} >
+      <Radio.Group buttonStyle="solid" defaultValue={'a'} >
       <Radio.Button  value={'a'} onChange={(e)=>{
         setOneRoomEstimation(true)
 setTwoRoomEstimation(false)
@@ -43,7 +43,7 @@ setUpcoming(true)
     </Radio.Group>
      {/* <MaterialDropdown/> */}
 {
-  oneRoomEstimation ?    <OneRoomEstimation/>:<></>
+  oneRoomEstimation ? <OneRoomEstimation/>:<></>
 }
 
 {
