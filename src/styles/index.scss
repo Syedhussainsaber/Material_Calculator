@@ -1,0 +1,70 @@
+h2{
+font-family: Suisseintl, sans-serif;
+}
+
+.homePage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    .title{
+        text-align: center;
+        font-size: 2em;
+        margin-top: 20px;
+        font-family:Suisseintl, sans-serif;;
+    }
+}
+
+
+#one-room-estimation{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+gap: 20px;
+margin-top: 15px;
+    .inputs{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 5px;
+width: 60%;
+label{
+    font-size: 17px;
+    width: 60%;
+    text-align: left;
+}
+input{
+    width: 60%;
+    font-size: 1.25em;
+    font-family: Suisseintl, sans-serif;
+    padding: 4px 8px;
+}
+    }
+
+button{
+    margin-bottom: 20px;
+}
+
+}
+
+
+
+@media screen and (max-width:600px) {
+    #one-room-estimation{
+        .inputs{
+width: 80%;
+            label{
+width: 90%;
+            }
+input{
+    width: 90%;
+}
+        }
+    }
+
+}
