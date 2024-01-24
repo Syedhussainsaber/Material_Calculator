@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Radio } from 'antd'
 import OneRoomEstimation from './OneRoomEstimation'
+import TwoRoomEstimation from './TwoRoomEstimation'
 import { useState } from 'react'
 
 
@@ -47,9 +48,7 @@ setUpcoming(true)
 }
 
 {
-  twoRoomEstimation ? <> <h2>Two Room Estimation</h2>
-  <p>Coming Soon...!</p>
-  </>:<></>
+  twoRoomEstimation ? <TwoRoomEstimation/>:<></>
 }
 
 {
