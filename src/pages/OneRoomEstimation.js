@@ -3,33 +3,31 @@ import { Input,List,Card,Button } from 'antd'
 
 const OneRoomEstimation = () => {
 
-  
 const [allInputValues, setallInputValues] = useState(null)
 const [totalLength, setTotalLength] = useState(null)
 const [allOutputValues, setallOutputValues] = useState(null)
-
-
+const inputFields = ["roomDim","ssHeight","wallThickness", "doorDim", "windowDim", "f1Dim", "f2Dim", "plinthDim", "ccDim"]
 
 const data = [
   {
-    title: 'Excavation',
+    title: 'Excavation of foundation',
     content:allOutputValues?.excavation
     
   },
   {
-    title: 'Cement Concrete',
+    title: 'Cement concrete in foundation',
     content:allOutputValues?.cc
   },
   {
-    title: 'Footing 1',
+    title: 'Brick work in footing 1',
     content:allOutputValues?.f1
   },
   {
-    title: 'Footing 2',
+    title: 'Brick work in footing 2',
     content:allOutputValues?.f2
   },
   {
-    title: "Plinth",
+    title: "Brick work in plinth",
     content: allOutputValues?.plinth
   },
   {
@@ -40,16 +38,18 @@ const data = [
 
 useEffect(()=>{
   handleOutput()
-  },[totalLength,allOutputValues])
+},[totalLength])
 
+ 
 const handleOutput= ()=>{
   if(totalLength){
     const excavation = (totalLength)*(parseFloat(allInputValues.ccDim[1]) + parseFloat(allInputValues.f1Dim[1]) + parseFloat(allInputValues.f2Dim[1]))*(parseFloat(allInputValues.ccDim[0]))
+
     const cc =totalLength*(parseFloat(allInputValues.ccDim[1]))*(parseFloat(allInputValues.ccDim[0]))
    const f1 = totalLength*(parseFloat(allInputValues.f1Dim[1]))*(parseFloat(allInputValues.f1Dim[0]))
-   const f2=totalLength*(parseFloat(allInputValues.f2Dim[0]))*(parseFloat(allInputValues.f2Dim[0]))
+   const f2=totalLength*(parseFloat(allInputValues.f2Dim[1]))*(parseFloat(allInputValues.f2Dim[0]))
    const plinth=totalLength*(parseFloat(allInputValues.plinthDim[1]))*(parseFloat(allInputValues.plinthDim[0]))
-   const ss=totalLength*(allInputValues.ssHeight)*(allInputValues.roomThickness)
+   const ss=totalLength*(allInputValues.ssHeight)*(allInputValues.wallThickness)
 
     const outputData = {
       excavation: excavation,
@@ -60,40 +60,39 @@ const handleOutput= ()=>{
       ss:ss
     }
     setallOutputValues(outputData)
-  }
-  
+  }  
 }
-
 
 
 
 const handleSubmit= async()=>{
   if(allInputValues){
-  if(!Array.isArray(allInputValues.roomDim)){
-    allInputValues.roomDim = allInputValues.roomDim.split(",")
-  }
-   if(!Array.isArray(allInputValues.f1Dim)){
-    allInputValues.f1Dim = allInputValues.f1Dim.split(",")
-   }
+inputFields.forEach((input)=>(allInputValues[input]=allInputValues[input].split(", ")))
+  // if(!Array.isArray(allInputValues.roomDim)){
+  //   allInputValues.roomDim = allInputValues.roomDim.split(",")
+  // }
+  //  if(!Array.isArray(allInputValues.f1Dim)){
+  //   allInputValues.f1Dim = allInputValues.f1Dim.split(",")
+  //  }
     
-   if(!Array.isArray(allInputValues.f2Dim)){
-    allInputValues.f2Dim = allInputValues.f2Dim.split(",")
-   }
+  //  if(!Array.isArray(allInputValues.f2Dim)){
+  //   allInputValues.f2Dim = allInputValues.f2Dim.split(",")
+  //  }
   
-   if(!Array.isArray(allInputValues.ccDim)){
-    allInputValues.ccDim = allInputValues.ccDim.split(",")
-   }
+  //  if(!Array.isArray(allInputValues.ccDim)){
+  //   allInputValues.ccDim = allInputValues.ccDim.split(",")
+  //  }
    
-  if(!Array.isArray(allInputValues.plinthDim)){
-    allInputValues.plinthDim = allInputValues.plinthDim.split(",")
-  }  
-  allInputValues.roomThickness = parseFloat(allInputValues.roomThickness)
+  // if(!Array.isArray(allInputValues.plinthDim)){
+  //   allInputValues.plinthDim = allInputValues.plinthDim.split(",")
+  // }  
+  allInputValues.wallThickness = parseFloat(allInputValues.wallThickness)
   allInputValues.ssHeight = parseFloat(allInputValues.ssHeight)
 
   }
   
-      const lL = 2*(parseFloat((allInputValues.roomDim[1]) )+ (allInputValues.roomThickness))
-      const sL=  2*(parseFloat((allInputValues.roomDim[0])) + allInputValues.roomThickness)
+      const lL = 2*(parseFloat((allInputValues.roomDim[1]) )+ (allInputValues.wallThickness))
+      const sL=  2*(parseFloat((allInputValues.roomDim[0])) + allInputValues.wallThickness)
   
   setTotalLength(lL+sL)
   
@@ -119,49 +118,17 @@ const handleSubmit= async()=>{
 
   return (
 <section id='one-room-estimation'>
-<div className="inputs">
-<label> Width and Length of the room: (in Meters):</label>
-<Input size='small' type='text' placeholder='width,length' onChange={(e)=> setallInputValues({...allInputValues,"roomDim":(e.target.value)})}/>    
-</div>
-
-<div className="inputs">
-<label>Thickness of the Wall: (in Meters):</label>
-<Input size='small' type='text' placeholder='thickness' onChange={(e)=> setallInputValues({...allInputValues,"roomThickness":(e.target.value)})}/>
-</div>
-
-<div className="inputs">
-<label>Enter Height of the Super Structure: (in Meters):</label>
-<Input size='small' type='text' placeholder='height' onChange={(e)=> setallInputValues({...allInputValues,"ssHeight":(e.target.value)})}/>
-</div>
-
-<div className="inputs">
-<label>Enter Width and Height of the Plinth (in Meters):</label>
-<Input size='small' placeholder='width,height' onChange={(e)=> setallInputValues({...allInputValues,"plinthDim":(e.target.value)})} />
-</div>
-
-<div className="inputs">
-<label>Enter the Width and Height of the Footing 1 (in Meters): </label>
-<Input size='small' placeholder="width,height" onChange={(e)=> setallInputValues({...allInputValues,"f1Dim":(e.target.value)})}/>
-</div>
-
-<div className="inputs">
-<label>Enter the Width and Height of the Footing 2 (in Meters):</label>
-<Input size='small' placeholder="width,height" onChange={(e)=> setallInputValues({...allInputValues,"f2Dim":(e.target.value)})}/>
-</div>
-
-
-<div className="inputs">
-<label>Enter the Width and Height Cement Concrete base Width (in Meters):</label>
-<Input size='small' placeholder="width,height" onChange={(e)=> setallInputValues({...allInputValues,"ccDim":(e.target.value)})}/>
-</div>
-
-
+  {
+    inputFields?.map((input, id)=> (<div key={id} className="inputs">
+    <label>{input.includes("ssHeight") ? "Height of the super structure" : input.includes("wallThickness") ? "Thickness of wall":`Width, Length of the ${input.replaceAll("Dim", "")}`}  (in Meters):</label>
+    <Input size='small' type='text' placeholder={input.includes("ssHeight") ? "Height" : input.includes("wallThickness") ? "Thickness":'Width, Length'} onChange={(e)=> setallInputValues({...allInputValues, [input]:(e.target.value)})}/>    
+    </div>))
+  }
 
 {console.log(allOutputValues)}
 {console.log(allInputValues)}
 
 <Button onClick={()=>handleSubmit()}>Submit</Button>
-
 
 {
   totalLength ?
@@ -182,9 +149,7 @@ const handleSubmit= async()=>{
   </>
 :<></>
 }
-
 </section>
   )
-
 }
 export default OneRoomEstimation
