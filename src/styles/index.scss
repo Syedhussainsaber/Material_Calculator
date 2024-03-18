@@ -2,17 +2,48 @@ h2{
 font-family: Suisseintl, sans-serif;
 }
 
+
+  
 .homePage{
+
+    .videoBg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    /* BackgroundVideo.scss */
+    .background-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      
+        video {
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+z-index: 10;
 
     .title{
         text-align: center;
         font-size: 2em;
-        margin-top: 20px;
+margin: 15px 0px 10px;
         font-family:Suisseintl, sans-serif;;
     }
 }
@@ -32,15 +63,15 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 5px;
-width: 60%;
+width: 80%;
 label{
-    font-size: 17px;
+    font-size: 16px;
     width: 60%;
     text-align: left;
 }
 input{
     width: 60%;
-    font-size: 1.25em;
+    font-size: 20px;
     font-family: Suisseintl, sans-serif;
     padding: 5px 10px;
     border-radius: 20px;
@@ -58,7 +89,7 @@ button{
 @media screen and (max-width:600px) {
     #one-room-estimation{
         .inputs{
-width: 80%;
+width: 100%;
             label{
 width: 90%;
             }

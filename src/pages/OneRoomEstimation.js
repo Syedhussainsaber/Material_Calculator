@@ -43,13 +43,13 @@ useEffect(()=>{
  
 const handleOutput= ()=>{
   if(totalLength){
-    const excavation = (totalLength)*(parseFloat(allInputValues.ccDim[1]) + parseFloat(allInputValues.f1Dim[1]) + parseFloat(allInputValues.f2Dim[1]))*(parseFloat(allInputValues.ccDim[0]))
+    const excavation = (totalLength)*(parseFloat(allInputValues?.ccDim[1]) + parseFloat(allInputValues?.f1Dim[1]) + parseFloat(allInputValues?.f2Dim[1]))*(parseFloat(allInputValues?.ccDim[0]))
 
-    const cc =totalLength*(parseFloat(allInputValues.ccDim[1]))*(parseFloat(allInputValues.ccDim[0]))
-   const f1 = totalLength*(parseFloat(allInputValues.f1Dim[1]))*(parseFloat(allInputValues.f1Dim[0]))
-   const f2=totalLength*(parseFloat(allInputValues.f2Dim[1]))*(parseFloat(allInputValues.f2Dim[0]))
-   const plinth=totalLength*(parseFloat(allInputValues.plinthDim[1]))*(parseFloat(allInputValues.plinthDim[0]))
-   const ss=totalLength*(allInputValues.ssHeight)*(allInputValues.wallThickness)
+    const cc =totalLength*(parseFloat(allInputValues?.ccDim[1]))*(parseFloat(allInputValues?.ccDim[0]))
+   const f1 = totalLength*(parseFloat(allInputValues?.f1Dim[1]))*(parseFloat(allInputValues?.f1Dim[0]))
+   const f2=totalLength*(parseFloat(allInputValues?.f2Dim[1]))*(parseFloat(allInputValues?.f2Dim[0]))
+   const plinth=totalLength*(parseFloat(allInputValues?.plinthDim[1]))*(parseFloat(allInputValues?.plinthDim[0]))
+   const ss=totalLength*(allInputValues?.ssHeight)*(allInputValues?.wallThickness)
 
     const outputData = {
       excavation: excavation,
@@ -68,39 +68,39 @@ const handleOutput= ()=>{
 const handleSubmit= async()=>{
   if(allInputValues){
 inputFields.forEach((input)=>(allInputValues[input]=allInputValues[input].split(", ")))
-  // if(!Array.isArray(allInputValues.roomDim)){
-  //   allInputValues.roomDim = allInputValues.roomDim.split(",")
+  // if(!Array.isArray(allInputValues?.roomDim)){
+  //   allInputValues?.roomDim = allInputValues?.roomDim.split(",")
   // }
-  //  if(!Array.isArray(allInputValues.f1Dim)){
-  //   allInputValues.f1Dim = allInputValues.f1Dim.split(",")
+  //  if(!Array.isArray(allInputValues?.f1Dim)){
+  //   allInputValues?.f1Dim = allInputValues?.f1Dim.split(",")
   //  }
     
-  //  if(!Array.isArray(allInputValues.f2Dim)){
-  //   allInputValues.f2Dim = allInputValues.f2Dim.split(",")
+  //  if(!Array.isArray(allInputValues?.f2Dim)){
+  //   allInputValues?.f2Dim = allInputValues?.f2Dim.split(",")
   //  }
   
-  //  if(!Array.isArray(allInputValues.ccDim)){
-  //   allInputValues.ccDim = allInputValues.ccDim.split(",")
+  //  if(!Array.isArray(allInputValues?.ccDim)){
+  //   allInputValues?.ccDim = allInputValues?.ccDim.split(",")
   //  }
    
-  // if(!Array.isArray(allInputValues.plinthDim)){
-  //   allInputValues.plinthDim = allInputValues.plinthDim.split(",")
+  // if(!Array.isArray(allInputValues?.plinthDim)){
+  //   allInputValues?.plinthDim = allInputValues?.plinthDim.split(",")
   // }  
-  allInputValues.wallThickness = parseFloat(allInputValues.wallThickness)
-  allInputValues.ssHeight = parseFloat(allInputValues.ssHeight)
+  allInputValues.wallThickness = parseFloat(allInputValues?.wallThickness)
+  allInputValues.ssHeight = parseFloat(allInputValues?.ssHeight)
 
   }
   
-      const lL = 2*(parseFloat((allInputValues.roomDim[1]) )+ (allInputValues.wallThickness))
-      const sL=  2*(parseFloat((allInputValues.roomDim[0])) + allInputValues.wallThickness)
+      const lL = 2*(parseFloat((allInputValues?.roomDim[1]) )+ (allInputValues?.wallThickness))
+      const sL=  2*(parseFloat((allInputValues?.roomDim[0])) + allInputValues?.wallThickness)
   
   setTotalLength(lL+sL)
   
-  // setallOutputValues({...allOutputValues,cc :totalLength*(allInputValues.ccHeight)*(allInputValues.ccWidth)})
-  // setallOutputValues({...allOutputValues,f1:totalLength*(allInputValues.f1Height)*(allInputValues.f1Width)})
-  // setallOutputValues({...allOutputValues,f2:totalLength*(allInputValues.f2Height)*(allInputValues.f2Width)})
-  // setallOutputValues({...allOutputValues,plinth:totalLength*(allInputValues.plinthHeight)*(allInputValues.plinthWidth)})
-  // setallOutputValues({...allOutputValues,ss:totalLength*(allInputValues.ssHeight)*(allInputValues.roomThickness)})
+  // setallOutputValues({...allOutputValues,cc :totalLength*(allInputValues?.ccHeight)*(allInputValues?.ccWidth)})
+  // setallOutputValues({...allOutputValues,f1:totalLength*(allInputValues?.f1Height)*(allInputValues?.f1Width)})
+  // setallOutputValues({...allOutputValues,f2:totalLength*(allInputValues?.f2Height)*(allInputValues?.f2Width)})
+  // setallOutputValues({...allOutputValues,plinth:totalLength*(allInputValues?.plinthHeight)*(allInputValues?.plinthWidth)})
+  // setallOutputValues({...allOutputValues,ss:totalLength*(allInputValues?.ssHeight)*(allInputValues?.roomThickness)})
   // setNetQuantity(Object.values(allOutputValues))
   }
 
@@ -142,7 +142,7 @@ inputFields.forEach((input)=>(allInputValues[input]=allInputValues[input].split(
     dataSource={data}
     renderItem={(item) => (
       <List.Item>
-        <Card title={item.title}>{item.content} m^3</Card>
+        <Card title={item?.title}>{item.content} m^3</Card>
       </List.Item>
     )}
   />

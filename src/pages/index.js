@@ -21,8 +21,17 @@ const [upcoming, setUpcoming] = useState(false)
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <section className='homePage'>
+
+    <section className='homePage'>
       <h1 className='title'>Construction Estimator</h1>
+      <video className='videoBg' src="/bg.mp4" autoPlay={true} loop={true} muted={true} controls={false} ></video>
+      
+      <div className="background-video">
+      <video autoPlay loop muted playsInline>
+        <source src={"/background.mp4"} type="video/mp4" />
+      </video>
+    </div>
+
 <p>Select the Structure element you want to build</p>
       <Radio.Group buttonStyle="solid" defaultValue={'a'} >
       <Radio.Button  value={'a'} onChange={(e)=>{
@@ -58,6 +67,7 @@ setUpcoming(true)
 }
 
 </section>
+
       </main>
     </>
   )

@@ -45,16 +45,16 @@ useEffect(()=>{
 
 const handleOutput= ()=>{
   if(totalLength){
-const excavation = ((totalLength)-((parseFloat(allInputValues.ccDim[0])/2)*(2)))*(parseFloat(allInputValues.ccDim[0])) * (parseFloat(allInputValues.ccDim[1]) +  parseFloat(allInputValues.f1Dim[1])+ parseFloat(allInputValues.f2Dim[1])) // here * 2 is No. of T Junctions 
-const cc = ((totalLength)-((parseFloat(allInputValues.ccDim[0])/2)*(2)))*(parseFloat(allInputValues.ccDim[0])) * (parseFloat(allInputValues.ccDim[1]))
+const excavation = ((totalLength)-((parseFloat(allInputValues?.ccDim[0])/2)*(2)))*(parseFloat(allInputValues?.ccDim[0])) * (parseFloat(allInputValues?.ccDim[1]) +  parseFloat(allInputValues?.f1Dim[1])+ parseFloat(allInputValues?.f2Dim[1])) // here * 2 is No. of T Junctions 
+const cc = ((totalLength)-((parseFloat(allInputValues?.ccDim[0])/2)*(2)))*(parseFloat(allInputValues?.ccDim[0])) * (parseFloat(allInputValues?.ccDim[1]))
 
-const f1 = ((totalLength)-((parseFloat(allInputValues.f1Dim[0])/2)*(2)))*(parseFloat(allInputValues.f1Dim[0])) * (parseFloat(allInputValues.f1Dim[1]))
+const f1 = ((totalLength)-((parseFloat(allInputValues?.f1Dim[0])/2)*(2)))*(parseFloat(allInputValues?.f1Dim[0])) * (parseFloat(allInputValues?.f1Dim[1]))
 
-const f2 = ((totalLength)-((parseFloat(allInputValues.f2Dim[0])/2)*(2)))*(parseFloat(allInputValues.f2Dim[0])) * (parseFloat(allInputValues.f2Dim[1]))
+const f2 = ((totalLength)-((parseFloat(allInputValues?.f2Dim[0])/2)*(2)))*(parseFloat(allInputValues?.f2Dim[0])) * (parseFloat(allInputValues?.f2Dim[1]))
 
-const plinth = ((totalLength)-((parseFloat(allInputValues.plinthDim[0])/2)*(2)))*(parseFloat(allInputValues.plinthDim[0])) * (parseFloat(allInputValues.plinthDim[1]))
+const plinth = ((totalLength)-((parseFloat(allInputValues?.plinthDim[0])/2)*(2)))*(parseFloat(allInputValues?.plinthDim[0])) * (parseFloat(allInputValues?.plinthDim[1]))
 
-const ss = (((totalLength)-(((allInputValues.wallThickness)/2)*(2)))*((allInputValues.wallThickness)) * ((allInputValues.ssHeight))) - (parseFloat(allInputValues.noOfDoors) * (parseFloat(allInputValues?.doorDim[0])*parseFloat(allInputValues?.doorDim[1]) * (allInputValues?.wallThickness) )) - (parseFloat(allInputValues.noOfWindows) * (parseFloat(allInputValues?.windowDim[0])*parseFloat(allInputValues?.windowDim[1]) * (allInputValues?.wallThickness) ))
+const ss = (((totalLength)-(((allInputValues?.wallThickness)/2)*(2)))*((allInputValues?.wallThickness)) * ((allInputValues?.ssHeight))) - (parseFloat(allInputValues?.noOfDoors) * (parseFloat(allInputValues?.doorDim[0])*parseFloat(allInputValues?.doorDim[1]) * (allInputValues?.wallThickness) )) - (parseFloat(allInputValues?.noOfWindows) * (parseFloat(allInputValues?.windowDim[0])*parseFloat(allInputValues?.windowDim[1]) * (allInputValues?.wallThickness) ))
 
 const outputData = {
       excavation: excavation,
@@ -80,49 +80,49 @@ const handleSubmit= async()=>{
        })
     }
    
-  // if(!Array.isArray(allInputValues.room1Dim)){
-  //   allInputValues.roomDim = allInputValues.room1Dim.split(", ")
+  // if(!Array.isArray(allInputValues?.room1Dim)){
+  //   allInputValues?.roomDim = allInputValues?.room1Dim.split(", ")
   // }
 
-  // if(!Array.isArray(allInputValues.room2Dim)){
-  //   allInputValues.roomDim = allInputValues.room1Dim.split(", ")
+  // if(!Array.isArray(allInputValues?.room2Dim)){
+  //   allInputValues?.roomDim = allInputValues?.room1Dim.split(", ")
   // }
 
-  // if(!Array.isArray(allInputValues.f1Dim)){
-  //   allInputValues.f1Dim = allInputValues.f1Dim.split(", ")
+  // if(!Array.isArray(allInputValues?.f1Dim)){
+  //   allInputValues?.f1Dim = allInputValues?.f1Dim.split(", ")
   //  }
     
-  //  if(!Array.isArray(allInputValues.f2Dim)){
-  //   allInputValues.f2Dim = allInputValues.f2Dim.split(", ")
+  //  if(!Array.isArray(allInputValues?.f2Dim)){
+  //   allInputValues?.f2Dim = allInputValues?.f2Dim.split(", ")
   //  }
   
-  //  if(!Array.isArray(allInputValues.ccDim)){
-  //   allInputValues.ccDim = allInputValues.ccDim.split(", ")
+  //  if(!Array.isArray(allInputValues?.ccDim)){
+  //   allInputValues?.ccDim = allInputValues?.ccDim.split(", ")
   //  }
    
-  // if(!Array.isArray(allInputValues.plinthDim)){
-  //   allInputValues.plinthDim = allInputValues.plinthDim.split(",")
+  // if(!Array.isArray(allInputValues?.plinthDim)){
+  //   allInputValues?.plinthDim = allInputValues?.plinthDim.split(",")
   // }  
-  allInputValues.wallThickness = parseFloat(allInputValues.wallThickness)
-  allInputValues.ssHeight = parseFloat(allInputValues.ssHeight)
-  allInputValues.noOfDoors =  parseFloat(allInputValues.noOfDoors)
-  allInputValues.noOfWindows =  parseFloat(allInputValues.noOfWindows)
+  allInputValues.wallThickness = parseFloat(allInputValues?.wallThickness)
+  allInputValues.ssHeight = parseFloat(allInputValues?.ssHeight)
+  allInputValues.noOfDoors =  parseFloat(allInputValues?.noOfDoors)
+  allInputValues.noOfWindows =  parseFloat(allInputValues?.noOfWindows)
   }
   
-const lL = Math.round(2*(parseFloat((allInputValues.room1Dim[0])) + parseFloat((allInputValues.room2Dim[0])) + 2*(allInputValues.wallThickness))*100)/100
+const lL = Math.round(2*(parseFloat((allInputValues?.room1Dim[0])) + parseFloat((allInputValues?.room2Dim[0])) + 2*(allInputValues?.wallThickness))*100)/100
 
 
-const sL = Math.round(3*(parseFloat((allInputValues.room1Dim[1])) + 2*(allInputValues.wallThickness))*100)/100
+const sL = Math.round(3*(parseFloat((allInputValues?.room1Dim[1])) + 2*(allInputValues?.wallThickness))*100)/100
 
 
   
 setTotalLength(sL + lL)
 
-  // setallOutputValues({...allOutputValues,cc :totalLength*(allInputValues.ccHeight)*(allInputValues.ccWidth)})
-  // setallOutputValues({...allOutputValues,f1:totalLength*(allInputValues.f1Height)*(allInputValues.f1Width)})
-  // setallOutputValues({...allOutputValues,f2:totalLength*(allInputValues.f2Height)*(allInputValues.f2Width)})
-  // setallOutputValues({...allOutputValues,plinth:totalLength*(allInputValues.plinthHeight)*(allInputValues.plinthWidth)})
-  // setallOutputValues({...allOutputValues,ss:totalLength*(allInputValues.ssHeight)*(allInputValues.wallThickness)})
+  // setallOutputValues({...allOutputValues,cc :totalLength*(allInputValues?.ccHeight)*(allInputValues?.ccWidth)})
+  // setallOutputValues({...allOutputValues,f1:totalLength*(allInputValues?.f1Height)*(allInputValues?.f1Width)})
+  // setallOutputValues({...allOutputValues,f2:totalLength*(allInputValues?.f2Height)*(allInputValues?.f2Width)})
+  // setallOutputValues({...allOutputValues,plinth:totalLength*(allInputValues?.plinthHeight)*(allInputValues?.plinthWidth)})
+  // setallOutputValues({...allOutputValues,ss:totalLength*(allInputValues?.ssHeight)*(allInputValues?.wallThickness)})
   // setNetQuantity(Object.values(allOutputValues))
   }
 
