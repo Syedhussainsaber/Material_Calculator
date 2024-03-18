@@ -11,28 +11,34 @@ const inputFields = ["roomDim","ssHeight","wallThickness", "doorDim", "windowDim
 const data = [
   {
     title: 'Excavation of foundation',
-    content:allOutputValues?.excavation
-    
+    content:allOutputValues?.excavation,
+    img:"/excavation.jpeg"
+
   },
   {
     title: 'Cement concrete in foundation',
-    content:allOutputValues?.cc
+    content:allOutputValues?.cc,
+    img:"/cementConcrete.jpeg"
   },
   {
     title: 'Brick work in footing 1',
-    content:allOutputValues?.f1
+    content:allOutputValues?.f1,
+    img:"/brickWork.jpeg"
   },
   {
     title: 'Brick work in footing 2',
-    content:allOutputValues?.f2
+    content:allOutputValues?.f2,
+    img:"/brickWork.jpeg"
   },
   {
     title: "Brick work in plinth",
-    content: allOutputValues?.plinth
+    content: allOutputValues?.plinth,
+    img:"/brickWorkPlinth.jpeg"
   },
   {
     title:"Super Structure",
-    content:allOutputValues?.ss
+    content:allOutputValues?.ss,
+    img:"/superStructure.jpeg"
   }
 ];
 
@@ -66,11 +72,16 @@ const handleOutput= ()=>{
 
 
 const handleSubmit= async()=>{
-  if(allInputValues){
+ 
+  if(allInputValues?.ccDim && allInputValues?.roomDim?.length && allInputValues){
 inputFields.forEach((input)=>(allInputValues[input]=allInputValues[input].split(", ")))
   // if(!Array.isArray(allInputValues?.roomDim)){
   //   allInputValues?.roomDim = allInputValues?.roomDim.split(",")
   // }
+  const lL = 2*(parseFloat((allInputValues?.roomDim[1]) )+ (allInputValues?.wallThickness))
+  const sL=  2*(parseFloat((allInputValues?.roomDim[0])) + allInputValues?.wallThickness)
+
+setTotalLength(lL+sL)
   //  if(!Array.isArray(allInputValues?.f1Dim)){
   //   allInputValues?.f1Dim = allInputValues?.f1Dim.split(",")
   //  }
@@ -90,12 +101,9 @@ inputFields.forEach((input)=>(allInputValues[input]=allInputValues[input].split(
   allInputValues.ssHeight = parseFloat(allInputValues?.ssHeight)
 
   }
-  
-      const lL = 2*(parseFloat((allInputValues?.roomDim[1]) )+ (allInputValues?.wallThickness))
-      const sL=  2*(parseFloat((allInputValues?.roomDim[0])) + allInputValues?.wallThickness)
-  
-  setTotalLength(lL+sL)
-  
+  else {
+    alert("Please provide the values!")
+  }
   // setallOutputValues({...allOutputValues,cc :totalLength*(allInputValues?.ccHeight)*(allInputValues?.ccWidth)})
   // setallOutputValues({...allOutputValues,f1:totalLength*(allInputValues?.f1Height)*(allInputValues?.f1Width)})
   // setallOutputValues({...allOutputValues,f2:totalLength*(allInputValues?.f2Height)*(allInputValues?.f2Width)})
@@ -128,24 +136,30 @@ inputFields.forEach((input)=>(allInputValues[input]=allInputValues[input].split(
 {console.log(allOutputValues)}
 {console.log(allInputValues)}
 
-<Button onClick={()=>handleSubmit()}>Submit</Button>
+<Button type="primary" size="middle" onClick={()=>handleSubmit()}>Submit</Button>
 
 {
   totalLength ?
   <>
-<p>Total Length : {totalLength}m</p>
+    <p>Total Length : <strong>{totalLength}m</strong></p>
+  <div className='outputContainer'>
 <List
     grid={{
       gutter: 16,
-      column: 4,
+      // column: 4,
+      // xs:{
+        column:{
+          xs:2, md: 4}
+      // }
     }}
     dataSource={data}
     renderItem={(item) => (
       <List.Item>
-        <Card title={item?.title}>{item.content} m^3</Card>
+        <Card style={{cursor:"pointer"}} title={item?.title} cover={<img height={"250px"}  src ={item.img} />}> <strong>{Math.round(item.content*100)/100} m^3</strong> (Volume) </Card>
       </List.Item>
     )}
   />
+  </div>
   </>
 :<></>
 }

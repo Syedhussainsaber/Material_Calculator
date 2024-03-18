@@ -72,7 +72,7 @@ label{
 input{
     width: 60%;
     font-size: 20px;
-    font-family: Suisseintl, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     padding: 5px 10px;
     border-radius: 20px;
 }
@@ -80,6 +80,10 @@ input{
 
 button{
     margin-bottom: 20px;
+}
+
+.outputContainer{
+    padding: 20px !important;
 }
 
 }
@@ -97,6 +101,8 @@ input{
     width: 90%;
 }
         }
+
+
     }
 
 }
