@@ -155,7 +155,7 @@ setTotalLength(lL+sL)
     dataSource={data}
     renderItem={(item) => (
       <List.Item>
-        <Card style={{cursor:"pointer"}} title={item?.title} cover={<img height={"250px"}  src ={item.img} />}> <strong>{Math.round(item.content*100)/100} m^3</strong> (Volume) </Card>
+        <Card style={{cursor:"pointer"}} title={item?.title} cover={<img height={"250px"} width={"250px"}  src ={item.img} />}> <strong>{Math.round(item.content*100)/100} m^3</strong> (Volume) </Card>
       </List.Item>
     )}
   />

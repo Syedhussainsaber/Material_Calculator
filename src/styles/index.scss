@@ -84,6 +84,16 @@ button{
 
 .outputContainer{
     padding: 20px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ant-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 }
