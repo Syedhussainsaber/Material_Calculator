@@ -60,6 +60,19 @@ align-items: center;
     align-items: center;
     gap: 20px;
 z-index: 10;
+
+.main-content{
+z-index: 10;
+background-color: rgba(229, 255, 28, 0.823);
+padding: 20px;
+display: flex;
+gap: 20px;
+color: black;
+font-size: 16px;
+flex-direction: column;
+align-items: center;
+border-radius: 20px;
+}
 }
 
 

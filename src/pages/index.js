@@ -37,8 +37,9 @@ const [twoBHK, setTwoBHK] = useState(false)
       </video>
     </div>
 
+<div className='main-content'>
 <p>Select the Structure element you want to estimate</p>
-      <Radio.Group buttonStyle="solid" defaultValue={'a'} >
+<Radio.Group buttonStyle="solid" defaultValue={'a'} >
       <Radio.Button  value={'a'} onChange={(e)=>{
         setOneRoomEstimation(true)
 setTwoRoomEstimation(false)
@@ -67,6 +68,9 @@ setUpcoming(true)
 setTwoBHK(false)
       }}>Upcoming</Radio.Button>
 </Radio.Group>
+</div>
+
+     
      {/* <MaterialDropdown/> */}
 {
   oneRoomEstimation && <OneRoomEstimation/>
