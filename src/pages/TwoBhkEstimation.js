@@ -7,7 +7,7 @@ const [allInputValues, setallInputValues] = useState(null)
 const [totalLength, setTotalLength] = useState(null)
 const [allOutputValues, setallOutputValues] = useState(null)
 
-const inputFields = ["room1Dim", "room2Dim","ssHeight","wallThickness","noOfDoors","doorDim","noOfWindows" ,"windowDim", "f1Dim", "f2Dim", "plinthDim", "ccDim"]
+const inputFields = ["room1Dim", "room2Dim","kitchenDim","ssHeight","wallThickness","noOfDoors","doorDim","noOfWindows" ,"windowDim","noOfTJunctions", "f1Dim", "f2Dim", "plinthDim", "ccDim"]
 
 
 const data = [
@@ -50,16 +50,16 @@ useEffect(()=>{
 
 const handleOutput= ()=>{
   if(totalLength){
-const excavation = ((totalLength)-((parseFloat(allInputValues?.ccDim[0])/2)*(2)))*(parseFloat(allInputValues?.ccDim[0])) * (parseFloat(allInputValues?.ccDim[1]) +  parseFloat(allInputValues?.f1Dim[1])+ parseFloat(allInputValues?.f2Dim[1])) // here * 2 is No. of T Junctions 
-const cc = ((totalLength)-((parseFloat(allInputValues?.ccDim[0])/2)*(2)))*(parseFloat(allInputValues?.ccDim[0])) * (parseFloat(allInputValues?.ccDim[1]))
+const excavation = ((totalLength)-((parseFloat(allInputValues?.ccDim[0])/2)*(allInputValues?.noOfTJunctions)))*(parseFloat(allInputValues?.ccDim[0])) * (parseFloat(allInputValues?.ccDim[1]) +  parseFloat(allInputValues?.f1Dim[1])+ parseFloat(allInputValues?.f2Dim[1])) // here * 2 is No. of T Junctions 
+const cc = ((totalLength)-((parseFloat(allInputValues?.ccDim[0])/2)*(allInputValues?.noOfTJunctions)))*(parseFloat(allInputValues?.ccDim[0])) * (parseFloat(allInputValues?.ccDim[1]))
 
-const f1 = ((totalLength)-((parseFloat(allInputValues?.f1Dim[0])/2)*(2)))*(parseFloat(allInputValues?.f1Dim[0])) * (parseFloat(allInputValues?.f1Dim[1]))
+const f1 = ((totalLength)-((parseFloat(allInputValues?.f1Dim[0])/2)*(allInputValues?.noOfTJunctions)))*(parseFloat(allInputValues?.f1Dim[0])) * (parseFloat(allInputValues?.f1Dim[1]))
 
-const f2 = ((totalLength)-((parseFloat(allInputValues?.f2Dim[0])/2)*(2)))*(parseFloat(allInputValues?.f2Dim[0])) * (parseFloat(allInputValues?.f2Dim[1]))
+const f2 = ((totalLength)-((parseFloat(allInputValues?.f2Dim[0])/2)*(allInputValues?.noOfTJunctions)))*(parseFloat(allInputValues?.f2Dim[0])) * (parseFloat(allInputValues?.f2Dim[1]))
 
-const plinth = ((totalLength)-((parseFloat(allInputValues?.plinthDim[0])/2)*(2)))*(parseFloat(allInputValues?.plinthDim[0])) * (parseFloat(allInputValues?.plinthDim[1]))
+const plinth = ((totalLength)-((parseFloat(allInputValues?.plinthDim[0])/2)*(allInputValues?.noOfTJunctions)))*(parseFloat(allInputValues?.plinthDim[0])) * (parseFloat(allInputValues?.plinthDim[1]))
 
-const ss = (((totalLength)-(((allInputValues?.wallThickness)/2)*(2)))*((allInputValues?.wallThickness)) * ((allInputValues?.ssHeight))) - (parseFloat(allInputValues?.noOfDoors) * (parseFloat(allInputValues?.doorDim[0])*parseFloat(allInputValues?.doorDim[1]) * (allInputValues?.wallThickness) )) - (parseFloat(allInputValues?.noOfWindows) * (parseFloat(allInputValues?.windowDim[0])*parseFloat(allInputValues?.windowDim[1]) * (allInputValues?.wallThickness) ))
+const ss = (((totalLength)-(((allInputValues?.wallThickness)/2)*(allInputValues?.noOfTJunctions)))*((allInputValues?.wallThickness)) * ((allInputValues?.ssHeight))) - (parseFloat(allInputValues?.noOfDoors) * (parseFloat(allInputValues?.doorDim[0])*parseFloat(allInputValues?.doorDim[1]) * (allInputValues?.wallThickness) )) - (parseFloat(allInputValues?.noOfWindows) * (parseFloat(allInputValues?.windowDim[0])*parseFloat(allInputValues?.windowDim[1]) * (allInputValues?.wallThickness) ))
 
 const outputData = {
       excavation: excavation,
@@ -71,7 +71,6 @@ const outputData = {
     }
     setallOutputValues(outputData)
   }
-  
 }
 
 
@@ -112,10 +111,14 @@ const handleSubmit= async()=>{
   allInputValues.ssHeight = parseFloat(allInputValues?.ssHeight)
   allInputValues.noOfDoors =  parseFloat(allInputValues?.noOfDoors)
   allInputValues.noOfWindows =  parseFloat(allInputValues?.noOfWindows)
-  const lL = Math.round(2*(parseFloat((allInputValues?.room1Dim[0])) + parseFloat((allInputValues?.room2Dim[0])) + 2*(allInputValues?.wallThickness))*100)/100
+  const lL = Math.round(3*(parseFloat((allInputValues?.room1Dim[0])) + parseFloat((allInputValues?.room2Dim[0])) + 2*(allInputValues?.wallThickness))*100)/100
 
-const sL = Math.round(3*(parseFloat((allInputValues?.room1Dim[1])) + 2*(allInputValues?.wallThickness))*100)/100
+  // 2 rooms short Length
+const sL1 = Math.round(3*(parseFloat((allInputValues?.room1Dim[1])) + (allInputValues?.wallThickness))*100)/100
 
+const sL2 = Math.round(4*(parseFloat((allInputValues?.kitchenDim[1])) + (allInputValues?.wallThickness))*100)/100
+
+const sL = sL1 + sL2
   
 setTotalLength(sL + lL)
   }
@@ -176,7 +179,7 @@ inputFields?.map((input,id)=>(<div key={id} className="inputs">
 {
   totalLength ?
   <>
-<p>Total Length : <strong>{totalLength}m</strong></p>
+<p>Total Length : <strong>{Math.round(totalLength * 100)/100} m</strong></p>
 <div className='outputContainer'>
 <List
     grid={{

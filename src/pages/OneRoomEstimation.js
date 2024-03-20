@@ -141,7 +141,7 @@ setTotalLength(lL+sL)
 {
   totalLength ?
   <>
-    <p>Total Length : <strong>{totalLength}m</strong></p>
+    <p>Total Length : <strong>{Math.round(totalLength * 100)/100}m</strong></p>
   <div className='outputContainer'>
 <List
     grid={{
